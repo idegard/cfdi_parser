@@ -61,6 +61,18 @@ module CfdiParser
       attribute("//tfd:TimbreFiscalDigital", 'UUID').value rescue nil
     end
 
+   def str_attribute(path, attr)
+     attribute(path, attr).value rescue nil
+   end
+
+    def float_attribute(path, attr)
+      attribute(path, attr).value.to_f rescue nil
+    end
+
+    def date_attribute(path, attr)
+      Date.strptime(attribute(path, attr).value, '%Y-%m-%d') rescue nil
+    end
+
     private # ======================== PRIVATE ========================== #
 
     def attribute(path, attr)
@@ -90,4 +102,3 @@ module CfdiParser
     end
   end
 end
-
